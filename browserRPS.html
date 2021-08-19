@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1> computer pick is: <label id="cmp"></label> </h1>
+  <h1> user pick is: <label id="user1">__</label></h1>
+  <button style="height: 2em; width: 5em;" onclick=refresh()>Ready player1</button>
+  <div style="display: flex; flex-direction: row;"><p id="is">The winner is</p>
+    <div style="margin-top: 16px; margin-left: 5px;" id="winner"> __</div></div>
+  <script>
+  //array to hold all 3 outcomes
+var outComes = ['r', 'p', 's'];
+
+//computer picks a random rock paper or scissors
+function rand() {
+ var rando = Math.floor(Math.random() * 3);
+ var compPick = outComes[rando];
+ //Console shows the random pick
+ console.log("This is comp pick: " + compPick);
+//User picks r, p or s
+//instead of node process.argv[2];
+document.onkeyup = function (event) {
+var userPick = event.key;
+document.getElementById('user1').innerHTML = userPick;
+console.log("this is user pick: " + userPick);
+//Show computer pick
+document.getElementById('cmp').innerHTML = compPick;
+
+//conditional to see who wins
+
+if (compPick === userPick) {
+    console.log("Tie game!")
+    document.getElementById("is").innerHTML = "Oh no! Its a ";
+    document.getElementById("winner").innerHTML = "tied game!";
+}
+if (compPick === "r" && userPick === "p") {
+    console.log("User wins!")
+    document.getElementById("winner").innerHTML = "User1!"
+  }
+  if (compPick === "p" && userPick === "s") {
+    console.log("User wins!")
+    document.getElementById("winner").innerHTML = "User1!"
+  }
+  if (compPick === "s" && userPick === "p") {
+    console.log("Computer love!")
+    document.getElementById("winner").innerHTML = " Computer love!"
+  }
+  if (compPick === "p" && userPick === "r") {
+    console.log("computer love!")
+    document.getElementById("winner").innerHTML = " Computer love!"
+}
+}
+};
+
+function refresh() {
+  rand();
+  document.getElementById("cmp").innerHTML = " ";
+  document.getElementById("user1").innerHTML = "__";
+  document.getElementById("winner").innerHTML = "__"
+  document.getElementById("is").innerHTML = "And the winner is"
+}
+
+//run game
+rand();
+  </script>
+</body>
+</html>
